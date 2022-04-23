@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DbgengRemoteMachineName>192.168.7.152</DbgengRemoteMachineName>
+    <RemoteDebuggerWorkingDirectory>C:\Users\user\Documents\test</RemoteDebuggerWorkingDirectory>
+    <RemoteDebuggerServerName>192.168.44.131</RemoteDebuggerServerName>
+    <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>C:\Users\user\Documents\test\FilterApp.exe</RemoteDebuggerCommand>
+    <DeploymentDirectory>C:\Users\user\Documents\test</DeploymentDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+</Project>

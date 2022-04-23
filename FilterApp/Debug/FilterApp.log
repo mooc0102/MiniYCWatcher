@@ -1,0 +1,5 @@
+﻿  FilterApp.cpp
+  FilterMgr.cpp
+  Generating Code...
+FilterMgr.obj : error LNK2019: unresolved external symbol _FilterConnectCommunicationPort@24 referenced in function "public: void __thiscall FilterMgr::connect(void)" (?connect@FilterMgr@@QAEXXZ)
+C:\Users\user\source\repos\FilterApp\Debug\FilterApp.exe : fatal error LNK1120: 1 unresolved externals

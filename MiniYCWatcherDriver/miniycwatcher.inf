@@ -1,0 +1,95 @@
+;;;
+;;; MiniYCWatcher
+;;;
+;;;
+;;; Copyright (c) 2001, Microsoft Corporation
+;;;
+
+[Version]
+Signature   = "$Windows NT$"
+Class       = "ActivityMonitor"                         ;This is determined by the work this filter driver does
+ClassGuid   = {b86dff51-a31e-4bac-b3cf-e8cfe75c9fc2}    ;This value is determined by the Class
+Provider    = %ProviderString%
+DriverVer   = 04/17/2022,1.0.0.0
+CatalogFile = miniycwatcher.cat
+
+
+[DestinationDirs]
+DefaultDestDir          = 12
+MiniYCWatcher.DriverFiles     = 12            ;%windir%\system32\drivers
+
+;;
+;; Default install sections
+;;
+
+[DefaultInstall]
+OptionDesc          = %ServiceDescription%
+CopyFiles           = MiniYCWatcher.DriverFiles
+
+[DefaultInstall.Services]
+AddService          = %ServiceName%,,MiniYCWatcher.Service
+
+;;
+;; Default uninstall sections
+;;
+
+[DefaultUninstall]
+DelFiles   = MiniYCWatcher.DriverFiles
+
+[DefaultUninstall.Services]
+DelService = %ServiceName%,0x200      ;Ensure service is stopped before deleting
+
+;
+; Services Section
+;
+
+[MiniYCWatcher.Service]
+DisplayName      = %ServiceName%
+Description      = %ServiceDescription%
+ServiceBinary    = %12%\%DriverName%.sys        ;%windir%\system32\drivers\
+Dependencies     = FltMgr
+ServiceType      = 2                            ;SERVICE_FILE_SYSTEM_DRIVER
+StartType        = 3                            ;SERVICE_DEMAND_START
+ErrorControl     = 1                            ;SERVICE_ERROR_NORMAL
+LoadOrderGroup   = "FSFilter Activity Monitor"
+AddReg           = MiniYCWatcher.AddRegistry
+
+;
+; Registry Modifications
+;
+
+[MiniYCWatcher.AddRegistry]
+HKR,,"SupportedFeatures",0x00010001,0x3
+HKR,"Instances","DefaultInstance",0x00000000,%DefaultInstance%
+HKR,"Instances\"%Instance.Name%,"Altitude",0x00000000,%Instance.Altitude%
+HKR,"Instances\"%Instance.Name%,"Flags",0x00010001,%Instance.Flags%
+
+;
+; Copy Files
+;
+
+[MiniYCWatcher.DriverFiles]
+%DriverName%.sys
+
+[SourceDisksFiles]
+miniycwatcher.sys = 1,,
+
+[SourceDisksNames]
+1 = %DiskId1%,,,
+
+;;
+;; String Section
+;;
+
+[Strings]
+ProviderString          = "TODO-Set-Provider"
+ServiceDescription      = "MiniYCWatcher mini-filter driver"
+ServiceName             = "MiniYCWatcher"
+DriverName              = "miniycwatcher"
+DiskId1                 = "MiniYCWatcher Device Installation Disk"
+
+;Instances specific information.
+DefaultInstance         = "MiniYCWatcher File System Watcher"       
+Instance.Name          = "MiniYCWatcher File System Watcher"
+Instance.Altitude      = "385100"
+Instance.Flags         = 0x0          

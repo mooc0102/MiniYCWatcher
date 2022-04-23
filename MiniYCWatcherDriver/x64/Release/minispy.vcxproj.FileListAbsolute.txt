@@ -1,0 +1,2 @@
+D:\VSProject\FilterApp\MiniYCWatcherDriver\x64\Release\miniycwatcher.sys
+D:\VSProject\MiniYCWatcher\MiniYCWatcherDriver\x64\Release\miniycwatcher.sys
